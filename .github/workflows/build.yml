@@ -41,10 +41,14 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: make install-deps
+        run: |
+          python3 -m pip install --upgrade pip
+          ARCHFLAGS="-arch arm64 -arch x86_64" pip install --no-binary numpy opencv-python --compile --force-reinstall numpy opencv-python
+          pip install pyinstaller
 
       - name: Build macOS executable
-        run: make mac
+        run: |
+          pyinstaller --onefile --console --clean --name pixel_png_to_svg --icon NONE --target-arch universal2 pixel_png_to_svg.py
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
