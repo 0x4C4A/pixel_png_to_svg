@@ -25,7 +25,7 @@ jobs:
         run: make windows
 
       - name: Upload Windows artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pixel_png_to_svg-windows
           path: dist/pixel_png_to_svg.exe
@@ -47,7 +47,7 @@ jobs:
         run: make mac
 
       - name: Upload macOS artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pixel_png_to_svg-macos
           path: dist/pixel_png_to_svg
